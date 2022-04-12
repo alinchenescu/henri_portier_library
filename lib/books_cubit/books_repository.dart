@@ -20,13 +20,9 @@ Future<List<BookModel>> getBooks() async {
   var response = await getHttp(StringConstants.booksGetUrl);
   List<BookModel> books = [];
   if (response.data != []) {
-    try {
-      books = List<BookModel>.from(response.data.map((model) {
-        return BookModel.fromJson(model);
-      }));
-    } catch (e) {
-      print(e);
-    }
+    books = List<BookModel>.from(response.data.map((model) {
+      return BookModel.fromJson(model);
+    }));
   }
 
   return books;
@@ -34,9 +30,7 @@ Future<List<BookModel>> getBooks() async {
 
 Future<List<OfferModel>> getOffers(List<BookModel> books) async {
   String reqUrl = StringConstants.booksGetUrl + '/';
-  try {} catch (e) {
-    print(e);
-  }
+
   for (var element in books) {
     reqUrl = reqUrl + element.isbn.toString() + ',';
   }
@@ -47,13 +41,9 @@ Future<List<OfferModel>> getOffers(List<BookModel> books) async {
   List<OfferModel> offers = [];
 
   if (response.data['offers'] != []) {
-    try {
-      offers = List<OfferModel>.from(response.data['offers'].map((model) {
-        return OfferModel.fromJson(model);
-      }));
-    } catch (e) {
-      print(e);
-    }
+    offers = List<OfferModel>.from(response.data['offers'].map((model) {
+      return OfferModel.fromJson(model);
+    }));
   }
 
   return offers;

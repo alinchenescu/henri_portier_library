@@ -47,59 +47,61 @@ class CartScreen extends StatelessWidget {
                         );
                       }),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  child: StatefulBuilder(
-                    builder: (context, setState) {
-                      num discount = 0;
-                      num currentDiscount = -1;
-                      num total = 0;
-                      OfferModel bestOffer = booksState.offers.first;
+                booksState.offers.isNotEmpty
+                    ? SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        child: StatefulBuilder(
+                          builder: (context, setState) {
+                            num discount = 0;
+                            num currentDiscount = -1;
+                            num total = 0;
+                            OfferModel bestOffer = booksState.offers.first;
 
-                      booksState.cartItems.forEach((element) {
-                        total = total + element.price!;
-                      });
+                            booksState.cartItems.forEach((element) {
+                              total = total + element.price!;
+                            });
 
-                      booksState.offers.forEach((offer) {
-                        if (offer.type == OfferType.percentage.name) {
-                          currentDiscount = total / 100 * offer.value!;
-                          if (currentDiscount > discount) {
-                            discount = currentDiscount;
-                            bestOffer = offer;
-                          }
-                        }
-                        if (offer.type == OfferType.minus.name) {
-                          currentDiscount = total - offer.value!;
-                          if (currentDiscount > discount) {
-                            discount = currentDiscount;
-                            bestOffer = offer;
-                          }
-                        }
-                        if (offer.type == OfferType.slice.name) {
-                          bestOffer = offer;
+                            booksState.offers.forEach((offer) {
+                              if (offer.type == OfferType.percentage.name) {
+                                currentDiscount = total / 100 * offer.value!;
+                                if (currentDiscount > discount) {
+                                  discount = currentDiscount;
+                                  bestOffer = offer;
+                                }
+                              }
+                              if (offer.type == OfferType.minus.name) {
+                                currentDiscount = total - offer.value!;
+                                if (currentDiscount > discount) {
+                                  discount = currentDiscount;
+                                  bestOffer = offer;
+                                }
+                              }
+                              if (offer.type == OfferType.slice.name) {
+                                bestOffer = offer;
 
-                          discount = total -
-                              (total ~/ offer.sliceValue! * offer.value!);
-                        }
-                      });
+                                discount = total -
+                                    (total ~/ offer.sliceValue! * offer.value!);
+                              }
+                            });
 
-                      return Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Total:${total.toString()}'
-                            '\nDiscount : ${discount.toString()} +  (${bestOffer.type})'
-                            '\nFinal Price : ${(total - discount).toString()}',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18,
-                            ),
-                          ),
+                            return Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Total:${total.toString()}'
+                                  '\nDiscount : ${discount.toString()}  (${bestOffer.type})'
+                                  '\nFinal Price : ${(total - discount).toString()}',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
-                  ),
-                ),
+                      )
+                    : Container(),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.005,
                 ),
