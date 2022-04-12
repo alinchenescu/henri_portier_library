@@ -7,8 +7,11 @@ import 'package:henri_portier_library/screens/splash_screen.dart';
   routes: <AutoRoute>[
     AutoRoute(
       page: SplashScreen,
+      initial: true,
     ),
-    AutoRoute(page: HomeNavScreen, initial: true),
+    AutoRoute(
+      page: HomeNavScreen,
+    ),
   ],
 )
 class $AppRouter {}

@@ -34,15 +34,15 @@ class AppRouter extends _i3.RootStackRouter {
 
   @override
   List<_i3.RouteConfig> get routes => [
-        _i3.RouteConfig(SplashScreen.name, path: '/splash-screen'),
-        _i3.RouteConfig(HomeNavScreen.name, path: '/')
+        _i3.RouteConfig(SplashScreen.name, path: '/'),
+        _i3.RouteConfig(HomeNavScreen.name, path: '/home-nav-screen')
       ];
 }
 
 /// generated route for
 /// [_i1.SplashScreen]
 class SplashScreen extends _i3.PageRouteInfo<void> {
-  const SplashScreen() : super(SplashScreen.name, path: '/splash-screen');
+  const SplashScreen() : super(SplashScreen.name, path: '/');
 
   static const String name = 'SplashScreen';
 }
@@ -50,7 +50,7 @@ class SplashScreen extends _i3.PageRouteInfo<void> {
 /// generated route for
 /// [_i2.HomeNavScreen]
 class HomeNavScreen extends _i3.PageRouteInfo<void> {
-  const HomeNavScreen() : super(HomeNavScreen.name, path: '/');
+  const HomeNavScreen() : super(HomeNavScreen.name, path: '/home-nav-screen');
 
   static const String name = 'HomeNavScreen';
 }
