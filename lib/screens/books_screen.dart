@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:henri_portier_library/books_cubit/books_cubit.dart';
 import 'package:henri_portier_library/books_cubit/books_state.dart';
+import 'package:henri_portier_library/widgets.dart';
 
 import '../models/book_model.dart';
 
@@ -45,11 +46,7 @@ class BooksScreen extends StatelessWidget {
                                   ? Colors.blueAccent.withOpacity(0.5)
                                   : Colors.grey[50],
                               padding: EdgeInsets.all(8),
-                              child: ListTile(
-                                contentPadding: EdgeInsets.zero,
-                                title: Text(book.title!),
-                                leading: Image.network(book.cover!),
-                              ),
+                              child: BookWidget(book, false),
                             ),
                           ),
                         );

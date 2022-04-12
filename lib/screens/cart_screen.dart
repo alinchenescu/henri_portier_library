@@ -4,6 +4,7 @@ import 'package:henri_portier_library/books_cubit/books_cubit.dart';
 import 'package:henri_portier_library/books_cubit/books_state.dart';
 import 'package:henri_portier_library/models/book_model.dart';
 import 'package:henri_portier_library/models/offer_model.dart';
+import 'package:henri_portier_library/widgets.dart';
 
 class CartScreen extends StatelessWidget {
   final BuildContext homeContext;
@@ -33,17 +34,9 @@ class CartScreen extends StatelessWidget {
                               vertical:
                                   MediaQuery.of(context).size.height * 0.01),
                           child: Container(
-                            color: Colors.grey[50],
-                            padding: EdgeInsets.all(8),
-                            child: ListTile(
-                              contentPadding: EdgeInsets.zero,
-                              title: Text(book.title!),
-                              leading: Image.network(book.cover!),
-                              subtitle: Text(
-                                'Price: ${book.price}',
-                              ),
-                            ),
-                          ),
+                              color: Colors.grey[50],
+                              padding: EdgeInsets.all(8),
+                              child: BookWidget(book, true)),
                         );
                       }),
                 ),
